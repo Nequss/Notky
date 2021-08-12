@@ -1,23 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Windows.Shell;
-using System.Reflection;
-using System.Diagnostics;
 
 namespace Notky
 {
-    [Serializable]
     public partial class Note : Window
     {
         public Note()
@@ -34,13 +24,12 @@ namespace Notky
             Height = height;
             Width = width;
             Text.FontSize = fontSize;
-
-            Trace.WriteLine(text);
             Text.Text = text;
 
-            Text.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(bgColor);
-            Text.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom(frColor);
-            Background = (SolidColorBrush)new BrushConverter().ConvertFrom(bgColor);
+            BrushConverter bc = new BrushConverter();
+            Text.Background = (SolidColorBrush)bc.ConvertFrom(bgColor);
+            Text.Foreground = (SolidColorBrush)bc.ConvertFrom(frColor);
+            Background = (SolidColorBrush)bc.ConvertFrom(bgColor);
         }
 
         private void Ini()
@@ -138,7 +127,8 @@ namespace Notky
 
         private void fontDownButton_Click(object sender, RoutedEventArgs e)
             => Text.FontSize -= 2;
-        ImageSource ImageConverter(string file)
+
+        private ImageSource ImageConverter(string file)
             => (ImageSource)new ImageSourceConverter().ConvertFrom(Assembly.GetExecutingAssembly().GetManifestResourceStream(file));
     }
 }

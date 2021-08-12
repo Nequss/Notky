@@ -1,24 +1,18 @@
 ﻿using Hardcodet.Wpf.TaskbarNotification;
+using Notky.Model;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Drawing;
-using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
-using Notky.Model;
+using System.Windows;
 using System.Windows.Media;
 
 namespace Notky
 {
     public partial class App : Application
     {
-
         private TaskbarIcon tb;
         private List<Note> notes;
         private Stream stream;
@@ -26,7 +20,6 @@ namespace Notky
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-
             if (File.Exists(appdata + "/Notky/data.bin"))
             {
                 List<NoteModel> noteModels;
@@ -69,18 +62,6 @@ namespace Notky
             tb.TrayRightMouseDown += Tb_TrayRightMouseDown;
         }
 
-        private void Tb_TrayRightMouseDown(object sender, RoutedEventArgs e)
-        {
-            Current.Shutdown();
-        }
-
-        private void Tb_TrayLeftMouseDown(object sender, RoutedEventArgs e)
-        {
-            Note note = new Note();
-            notes.Add(note);
-            note.Show();
-        }
-
         private void Application_Exit(object sender, ExitEventArgs e)
         {
             List<NoteModel> noteModels = new List<NoteModel>();
@@ -89,7 +70,7 @@ namespace Notky
             {
                 if (!note.IsLoaded)
                     continue;
-               
+
                 noteModels.Add(new NoteModel(
                         note.Left,
                         note.Top,
@@ -103,6 +84,18 @@ namespace Notky
 
             using (stream = File.Open(Path.Combine(appdata + "/Notky", "data.bin"), FileMode.OpenOrCreate))
                 new BinaryFormatter().Serialize(stream, noteModels);
+        }
+
+        private void Tb_TrayRightMouseDown(object sender, RoutedEventArgs e)
+        {
+            Current.Shutdown();
+        }
+
+        private void Tb_TrayLeftMouseDown(object sender, RoutedEventArgs e)
+        {
+            Note note = new Note();
+            notes.Add(note);
+            note.Show();
         }
     }
 }
