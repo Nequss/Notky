@@ -16,9 +16,6 @@ using System.Windows.Media;
 
 namespace Notky
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
 
@@ -32,16 +29,10 @@ namespace Notky
 
             if (File.Exists(appdata + "/Notky/data.bin"))
             {
-                Trace.WriteLine("Importing notes from");
-                Trace.WriteLine(appdata + "/Notky/data.bin");
-
                 List<NoteModel> noteModels;
 
                 using (stream = File.Open(Path.Combine(appdata + "/Notky", "data.bin"), FileMode.Open))
                     noteModels = (List<NoteModel>)new BinaryFormatter().Deserialize(stream);
-
-                foreach (NoteModel noteModel in noteModels)
-                    Trace.WriteLine(noteModel.text);
 
                 notes = new List<Note>();
 
@@ -63,8 +54,6 @@ namespace Notky
             }
             else
             {
-                Trace.WriteLine("didn't find notes");
-
                 Directory.CreateDirectory(appdata + "/Notky");
                 notes = new List<Note>();
             }
@@ -94,12 +83,13 @@ namespace Notky
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            Trace.WriteLine("saving notes in:");
-            Trace.WriteLine(Path.Combine(appdata + "/Notky", "data.bin"));
-
             List<NoteModel> noteModels = new List<NoteModel>();
 
             foreach (Note note in notes)
+            {
+                if (!note.IsLoaded)
+                    continue;
+               
                 noteModels.Add(new NoteModel(
                         note.Left,
                         note.Top,
@@ -109,6 +99,7 @@ namespace Notky
                         note.Text.Text,
                         ((SolidColorBrush)note.Background).Color.ToString(),
                         ((SolidColorBrush)note.Text.Foreground).Color.ToString()));
+            }
 
             using (stream = File.Open(Path.Combine(appdata + "/Notky", "data.bin"), FileMode.OpenOrCreate))
                 new BinaryFormatter().Serialize(stream, noteModels);
