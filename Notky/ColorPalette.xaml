@@ -1,0 +1,41 @@
+﻿<Window x:Class="Notky.ColorPalette"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Notky"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        Background="White"
+        ResizeMode="NoResize"
+        BorderThickness="0"
+        ShowInTaskbar="False"
+        Topmost="False"
+        WindowStartupLocation="Manual">
+
+    <Grid Name="grid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button BorderThickness="0" Background="White" Grid.Column="0"/>
+        <Button BorderThickness="0" Background="Orange" Grid.Column="1"/>
+        <Button BorderThickness="0" Background="Violet" Grid.Column="2"/>
+        <Button BorderThickness="0" Background="DarkCyan" Grid.Column="3"/>
+        <Button BorderThickness="0" Background="DarkGreen" Grid.Column="4"/>
+        <Button BorderThickness="0" Background="IndianRed" Grid.Column="5"/>
+        <Button BorderThickness="0" Background="SaddleBrown" Grid.Column="6"/>
+        <Button BorderThickness="0" Background="Yellow" Grid.Column="7"/>
+        <Button BorderThickness="0" Background="MidnightBlue" Grid.Column="8"/>
+        <Button BorderThickness="0" Background="Black" Grid.Column="9"/> 
+    </Grid>
+</Window>

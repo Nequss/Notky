@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\close.png" />
+    <None Remove="Resources\fontcolor.png" />
+    <None Remove="Resources\fontdown.png" />
+    <None Remove="Resources\fontup.png" />
+    <None Remove="Resources\palette.png" />
+    <None Remove="Resources\pin.png" />
+    <None Remove="Resources\redpin.png" />
+    <None Remove="Resources\tray.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\close.png" />
+    <EmbeddedResource Include="Resources\fontcolor.png" />
+    <EmbeddedResource Include="Resources\fontdown.png" />
+    <EmbeddedResource Include="Resources\fontup.png" />
+    <EmbeddedResource Include="Resources\palette.png" />
+    <EmbeddedResource Include="Resources\pin.png" />
+    <EmbeddedResource Include="Resources\redpin.png" />
+    <EmbeddedResource Include="Resources\tray.ico" />
+  </ItemGroup>
+
+</Project>
