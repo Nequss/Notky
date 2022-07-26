@@ -2,6 +2,7 @@
 using Notky.Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
@@ -63,6 +64,21 @@ namespace Notky
         }
 
         private void Application_Exit(object sender, ExitEventArgs e)
+            => SaveApp();
+
+        private void Tb_TrayRightMouseDown(object sender, RoutedEventArgs e)
+        {
+            Current.Shutdown();
+        }
+
+        private void Tb_TrayLeftMouseDown(object sender, RoutedEventArgs e)
+        {
+            Note note = new Note();
+            notes.Add(note);
+            note.Show();
+        }
+
+        public void SaveApp()
         {
             List<NoteModel> noteModels = new List<NoteModel>();
 
@@ -84,18 +100,6 @@ namespace Notky
 
             using (stream = File.Open(Path.Combine(appdata + "/Notky", "data.bin"), FileMode.OpenOrCreate))
                 new BinaryFormatter().Serialize(stream, noteModels);
-        }
-
-        private void Tb_TrayRightMouseDown(object sender, RoutedEventArgs e)
-        {
-            Current.Shutdown();
-        }
-
-        private void Tb_TrayLeftMouseDown(object sender, RoutedEventArgs e)
-        {
-            Note note = new Note();
-            notes.Add(note);
-            note.Show();
         }
     }
 }

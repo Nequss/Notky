@@ -62,6 +62,10 @@
                 <Image Name="fontDownImage"/>
             </Button>
 
+            <Button Style="{StaticResource BarButtons}" Click="saveDownButton_Click" Name="saveDownButton" BorderThickness="0" HorizontalAlignment="Left">
+                <Image Name="saveDownImage"/>
+            </Button>
+
             <Button Style="{StaticResource BarButtons}" Click="closeButton_Click" Name="closeButton" BorderThickness="0" HorizontalAlignment="Right" >
                 <Image Name="closeImage"/>
             </Button>
