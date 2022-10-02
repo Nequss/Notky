@@ -45,7 +45,6 @@ namespace Notky
             fontDownImage.Source = ImageConverter("Notky.Resources.fontdown.png");
             closeImage.Source = ImageConverter("Notky.Resources.close.png");
             fontColorImage.Source = ImageConverter("Notky.Resources.fontcolor.png");
-            saveDownImage.Source = ImageConverter("Notky.Resources.save.png");
         }
 
         private void DragEvent(object sender, MouseButtonEventArgs e)
@@ -126,12 +125,6 @@ namespace Notky
 
         private void fontDownButton_Click(object sender, RoutedEventArgs e)
             => Text.FontSize -= 2;
-
-        private void saveDownButton_Click(object sender, RoutedEventArgs e)
-        {
-            App currentApp = Application.Current as App;
-            currentApp.SaveApp();
-        }
 
         private ImageSource ImageConverter(string file)
             => (ImageSource)new ImageSourceConverter().ConvertFrom(Assembly.GetExecutingAssembly().GetManifestResourceStream(file));

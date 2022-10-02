@@ -18,7 +18,7 @@ namespace Notky
         private List<Note> notes;
         private Stream stream;
         private string appdata = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-
+        
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             if (File.Exists(appdata + "/Notky/data.bin"))
@@ -67,9 +67,7 @@ namespace Notky
             => SaveApp();
 
         private void Tb_TrayRightMouseDown(object sender, RoutedEventArgs e)
-        {
-            Current.Shutdown();
-        }
+            => Current.Shutdown();
 
         private void Tb_TrayLeftMouseDown(object sender, RoutedEventArgs e)
         {
@@ -101,5 +99,8 @@ namespace Notky
             using (stream = File.Open(Path.Combine(appdata + "/Notky", "data.bin"), FileMode.OpenOrCreate))
                 new BinaryFormatter().Serialize(stream, noteModels);
         }
+
+        private void Application_Deactivated(object sender, EventArgs e)
+            => SaveApp();
     }
 }

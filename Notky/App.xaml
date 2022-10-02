@@ -4,7 +4,8 @@
              xmlns:local="clr-namespace:Notky"
              Startup="Application_Startup"
              ShutdownMode="OnExplicitShutdown"
-             Exit="Application_Exit">
+             Exit="Application_Exit"
+             Deactivated="Application_Deactivated">
     
     <Application.Resources>
         

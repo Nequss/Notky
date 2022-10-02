@@ -4,6 +4,8 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
+    <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
+    <ApplicationIcon>Resources\tray.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,8 +16,11 @@
     <None Remove="Resources\palette.png" />
     <None Remove="Resources\pin.png" />
     <None Remove="Resources\redpin.png" />
-    <None Remove="Resources\save.png" />
     <None Remove="Resources\tray.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\tray.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,7 +35,6 @@
     <EmbeddedResource Include="Resources\palette.png" />
     <EmbeddedResource Include="Resources\pin.png" />
     <EmbeddedResource Include="Resources\redpin.png" />
-    <EmbeddedResource Include="Resources\save.png" />
     <EmbeddedResource Include="Resources\tray.ico" />
   </ItemGroup>
 
